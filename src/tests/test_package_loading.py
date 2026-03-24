@@ -100,9 +100,12 @@ def test_list_loaded_urls(selenium_standalone_refresh):
 
 def test_uri_mismatch(selenium_standalone_refresh):
     selenium_standalone_refresh.load_package("micropip")
-    selenium_standalone_refresh.load_package("http://some_url/micropip-3.0.6-py3-none-any.whl")
+    selenium_standalone_refresh.load_package(
+        "http://some_url/micropip-3.0.6-py3-none-any.whl"
+    )
     assert (
-        "URI mismatch, attempting to load package micropip" in selenium_standalone_refresh.logs
+        "URI mismatch, attempting to load package micropip"
+        in selenium_standalone_refresh.logs
     )
 
 
@@ -967,7 +970,9 @@ def test_lockfilecontents_absolute_file_name(
     ],
 )
 @pytest.mark.requires_dynamic_linking  # only required for fpcast-test
-def test_normalized_name(selenium_standalone_refresh, load_name, normalized_name, real_name):
+def test_normalized_name(
+    selenium_standalone_refresh, load_name, normalized_name, real_name
+):
     selenium = selenium_standalone_refresh
 
     selenium.run_js(
