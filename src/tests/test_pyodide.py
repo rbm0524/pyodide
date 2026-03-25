@@ -1469,7 +1469,7 @@ def test_raises_jsexception(selenium):
 
 
 @run_in_pyodide(packages=["pytest"])
-def test_module_not_found_note(selenium_standalone_refresh):
+def test_module_not_found_note(selenium_standalone):
     import importlib
 
     import pytest
@@ -1623,7 +1623,7 @@ def test_windows_to_linux_path_finder_edge_cases(selenium):
 
 
 @run_in_pyodide
-def test_windows_to_linux_path_import(selenium_standalone_refresh):
+def test_windows_to_linux_path_import(selenium_standalone):
     import sys
     from importlib import invalidate_caches
     from pathlib import Path

@@ -344,8 +344,8 @@ async def test_console_imports(selenium):
 
 
 @pytest.mark.xfail_browsers(node="Not available in node")
-def test_console_html(selenium_standalone_refresh):
-    selenium = selenium_standalone_refresh
+def test_console_html(selenium_standalone):
+    selenium = selenium_standalone
     selenium.goto(f"{selenium.base_url}/console.html")
     selenium.javascript_setup()
     selenium.run_js(
@@ -504,8 +504,8 @@ def test_console_html(selenium_standalone_refresh):
 
 
 @pytest.mark.xfail_browsers(node="Not available in node")
-def test_console_v2_html(selenium_standalone_refresh):
-    selenium = selenium_standalone_refresh
+def test_console_v2_html(selenium_standalone):
+    selenium = selenium_standalone
     selenium.goto(f"{selenium.base_url}/console-v2.html")
     selenium.javascript_setup()
 
