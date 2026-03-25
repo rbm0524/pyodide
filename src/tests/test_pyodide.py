@@ -2069,17 +2069,20 @@ def test_hiwire_invalid_ref(selenium):
             }
             """
         )
-    msg = "hiwire_{} on invalid reference 77. This is most likely due to use after free. It may also be due to memory corruption."
+    # Index 0 is never allocated in libhiwire. Thus, ref=1 is guaranteed
+    # to be an invalid reference, preventing test flakiness.
+    ref = 1
+    msg = f"hiwire_{{}} on invalid reference {ref}. This is most likely due to use after free. It may also be due to memory corruption."
     with pytest.raises(JsException, match=msg.format("get")):
-        _hiwire_get(77)
+        _hiwire_get(ref)
     assert _api.fail_test
     _api.fail_test = False
     with pytest.raises(JsException, match=msg.format("incref")):
-        _hiwire_incref(77)
+        _hiwire_incref(ref)
     assert _api.fail_test
     _api.fail_test = False
     with pytest.raises(JsException, match=msg.format("decref")):
-        _hiwire_decref(77)
+        _hiwire_decref(ref)
     assert _api.fail_test
     _api.fail_test = False
 
